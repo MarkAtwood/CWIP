@@ -1357,3 +1357,50 @@ Regulatory notes:
 - Amateur FM: Permitted under Part 97. Standard identification
   requirements apply. The human-readable Morse header satisfies
   identification if sent at the required intervals.
+
+# FEC Design Rationale {#fec-rationale}
+
+This appendix explains the choice of Reed-Solomon forward error
+correction rather than more modern codes.
+
+Why not LDPC or turbo codes?
+
+Modern weak-signal modes (FT8, FT4) use LDPC codes, achieving
+approximately 6 dB better coding gain than Reed-Solomon at low SNR.
+However, these gains assume soft-decision decoding, where the
+demodulator provides likelihood ratios ("70% confident this is a 1")
+rather than hard bits.
+
+OOK (on-off keying) naturally produces hard decisions: the Goertzel
+filter detects tone energy, which is thresholded to a 0 or 1. Soft
+information can be extracted from energy levels, but awkwardly.
+PSK and FSK modulations provide soft decisions more naturally, which
+is why weak-signal modes use them.
+
+Why Reed-Solomon fits OOK:
+
+1. Works well with hard-decision decoding
+2. Excels at burst errors (matches fading, static crashes, QRM)
+3. Interleaving spreads bursts across codewords effectively
+4. Simple to implement (single library dependency)
+5. Space and broadcast heritage (CCSDS, DVB)
+
+The CWIP channel model:
+
+| Error Source | Pattern | RS Suitability |
+|--------------|---------|----------------|
+| Fading (QSB) | Burst erasures | Excellent |
+| Static (QRN) | Impulse bursts | Excellent |
+| QRM | Burst interference | Excellent |
+| Thermal noise | Random bits | Adequate |
+
+For predominantly burst-error channels with hard-decision demodulation,
+Reed-Solomon with interleaving is arguably the correct choice, not
+merely a compromise.
+
+CWIP does not compete with weak-signal modes. It is designed to be
+implementable, amusing, and functional over channels where operators
+can actually hear the transmission. For stations pushing the limits
+of propagation, FT8 exists and works well. CWIP targets a different
+use case: human-supervised, machine-assisted communication at
+practical signal levels.
