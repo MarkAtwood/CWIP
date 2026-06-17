@@ -1,0 +1,8 @@
+{
+  "database": "dolt",
+  "backend": "dolt",
+  "dolt_mode": "server",
+  "dolt_database": "CWIP",
+  "project_id": "a7b78826-e2f5-47e1-9d27-7e127bc88b66",
+  "global_dolt_database": "beads_global"
+}
