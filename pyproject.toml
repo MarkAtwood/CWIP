@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cwip"
+version = "0.1.0"
+description = "IPv6 over Continuous Wave (Morse code)"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Mark Atwood", email = "mark@reviewcommit.com"}
+]
+keywords = ["ipv6", "morse", "cw", "amateur-radio", "ham-radio"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Communications :: Ham Radio",
+]
+requires-python = ">=3.10"
+dependencies = [
+    "reedsolo>=1.7.0",
+]
+
+[project.optional-dependencies]
+audio = [
+    "numpy>=1.24.0",
+    "sounddevice>=0.4.6",
+]
+rig = [
+    "pyserial>=3.5",
+]
+tun = [
+    "python-pytun>=2.3.0",
+]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+]
+all = [
+    "cwip[audio,rig,tun,dev]",
+]
+
+[project.urls]
+Homepage = "https://github.com/MarkAtwood/cwip"
+Documentation = "https://github.com/MarkAtwood/cwip#readme"
+Repository = "https://github.com/MarkAtwood/cwip"
+
+[project.scripts]
+cwip-monitor = "tools.cwip_monitor:main"
+
+[tool.setuptools.packages.find]
+include = ["cwip*", "rigs*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
