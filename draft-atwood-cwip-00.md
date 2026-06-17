@@ -1308,3 +1308,52 @@ Header flags (byte 6):
 - bit4 = last tile
 - bit5 = ack_req
 - bit6 = auth_present (0 = no AUTH, 1 = 16-byte AUTH after CRC32)
+
+# FM Audio Transport {#fm-transport}
+
+For FM transceivers lacking CW capability (e.g., MURS, business band,
+amateur FM repeaters), CWIP symbols MAY be conveyed as audio tones.
+
+Tone encoding:
+
+| Symbol State | Audio |
+|--------------|-------|
+| Mark (1) | 1200 Hz tone |
+| Space (0) | Silence |
+
+The 1200 Hz frequency is chosen for compatibility with existing packet
+radio equipment and the Bell 202 modem standard. Implementations MAY
+use other frequencies (e.g., 800 Hz for CW sidetone compatibility)
+provided both endpoints agree.
+
+Symbol timing follows the same R-mode parameters as CW transport:
+R1 mode uses 1.0 ms symbols, yielding ~1000 baud.
+
+Detection: A Goertzel filter or equivalent single-frequency detector
+at the agreed tone frequency, with threshold set to distinguish tone
+presence from background noise.
+
+FM channel considerations:
+
+- Pre-emphasis/de-emphasis: Standard FM voice radios apply 6 dB/octave
+  pre-emphasis. The 1200 Hz tone will be boosted ~6 dB relative to
+  baseband. Receivers should account for this or use flat audio paths.
+
+- Channel bandwidth: Narrowband FM (12.5 kHz) is sufficient for
+  1200 Hz tone at 1000 baud.
+
+- CTCSS/DCS: If the FM channel uses tone squelch, ensure the CWIP
+  audio tone does not conflict with CTCSS frequencies (67-254 Hz)
+  or DCS codes.
+
+Regulatory notes:
+
+- MURS (47 CFR 95 Subpart J): Permits data transmissions. No license
+  required. Station identification not required.
+
+- Business band (47 CFR 90): Data permitted on licensed frequencies.
+  Check license conditions.
+
+- Amateur FM: Permitted under Part 97. Standard identification
+  requirements apply. The human-readable Morse header satisfies
+  identification if sent at the required intervals.

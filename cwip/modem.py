@@ -10,7 +10,7 @@ class ModemConfig:
     """Modem timing configuration."""
     symbol_ms: float = 1.0      # Symbol duration in milliseconds (R1 mode)
     sample_rate: int = 48000    # Audio sample rate
-    tone_freq: int = 800        # CW tone frequency for audio detection
+    tone_freq: int = 1200       # Audio tone frequency (1200 Hz default, packet radio tradition)
     threshold: float = 0.5      # Detection threshold (0-1)
 
 
