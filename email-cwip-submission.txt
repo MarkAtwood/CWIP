@@ -1,0 +1,37 @@
+To: rfc-ise@rfc-editor.org
+Subject: April 1 RFC Submission: CWIP (IPv6 over Continuous Wave)
+From: Mark Atwood <mark@reviewcommit.com>
+
+Dear Independent Submissions Editor,
+
+I am submitting "CWIP: Human-Readable, Machine-Decodable IPv6 over
+Continuous Wave (and Flashing Lights)" for consideration as an
+April 1 RFC.
+
+The premise: carry IPv6 packets over Morse code (CW keying), the
+oldest digital mode, while keeping transmissions human-recognizable
+at the edges and machine-efficient in the middle. Operators can
+supervise bursts via traditional Morse prosigns, while the payload
+uses self-clocking line codes, Reed-Solomon FEC, and interleaving
+for robust machine decoding.
+
+The joke is taking the most venerable radio technology (CW, dating
+to the 1840s) and the most modern network protocol (IPv6) and
+making them work together with full technical rigor. Every detail
+is implementable - the framing, the FEC parameters, the line coding
+- it just happens to achieve roughly 1 kbps on a good day.
+
+The draft is available as a GitHub gist in mmark markdown format:
+https://gist.github.com/MarkAtwood/a3ac2b631dfc267dd3d271bd0f0c2343
+
+I can provide xml2rfc XML output on request.
+
+A companion draft, "Ham64: IPv6-Embedded Human Identifier Encoding,"
+defines an addressing scheme for embedding callsigns, tail numbers,
+and other human identifiers directly in IPv6 addresses. I am
+submitting it separately but they work well together.
+
+Thank you for your consideration.
+
+Best regards,
+Mark Atwood

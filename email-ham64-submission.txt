@@ -1,0 +1,41 @@
+To: rfc-ise@rfc-editor.org
+Subject: April 1 RFC Submission: Ham64 (Human Identifiers in IPv6 Addresses)
+From: Mark Atwood <mark@reviewcommit.com>
+
+Dear Independent Submissions Editor,
+
+I am submitting "Ham64: IPv6-Embedded Human Identifier Encoding"
+for consideration as an April 1 RFC.
+
+The premise: embed human-readable identifiers - amateur radio
+callsigns, aircraft tail numbers, airport codes, boat hull IDs,
+license plates, Maidenhead grid locators, postal codes, and
+telephone numbers - directly into IPv6 addresses using a 6-bit
+symbol alphabet.
+
+The result is addresses like:
+
+  2001:db8:6464:2028:3945:993b:aefe:0  (callsign K7ABC/TT)
+  2001:db8:6464:222e:48e2:1067:e000:0  (tail number N9748C)
+
+The joke is solving a problem nobody asked for (embedding
+identifiers in addresses) with unnecessary rigor (full ABNF,
+test vectors, encoding procedures, privacy warnings). The spec
+dutifully documents fictional example identifiers: N9748C is
+an FAA-reserved film/TV tail number, ABC is the USCG's reserved
+example manufacturer code for hull IDs, and of course 555-0100
+for telephone numbers.
+
+The draft is available as a GitHub gist in mmark markdown format:
+https://gist.github.com/MarkAtwood/fba0d655efc76a6c8670a30fe09024b6
+
+I can provide xml2rfc XML output on request.
+
+A companion draft, "CWIP: IPv6 over Continuous Wave," defines a
+physical layer for carrying IPv6 over Morse code. I am submitting
+it separately but they work well together.
+
+Thank you for your consideration.
+
+Best regards,
+Mark Atwood
